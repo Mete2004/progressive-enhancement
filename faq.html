@@ -7,6 +7,101 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
+
+			body{
+				display: flex;
+				flex-direction: column;
+				gap: 1.2rem;
+			}
+
+			details {
+				width: fit-content;
+				border: 1px solid black;
+				border-radius: 0.5rem;
+			
+				/* Als de gebruiker geen voorkeur heeft van minder animatie, dan voer animatie uit*/
+			  @media (prefers-reduced-motion: no-preference) {
+					interpolate-size: allow-keywords;
+				}
+
+				&::details-content {
+					opacity: 0;
+					block-size: 0;
+					overflow-y: clip;
+					transition: content-visibility 0.3s allow-discrete, opacity 0.3s, block-size 0.3s;
+				}
+
+				&[open]::details-content {
+					opacity: 1;
+					block-size: auto;
+				}
+
+				& p {
+    				margin: 0;
+    				padding: 1rem;
+  				}
+			}
+			/* Als de wel voorkeur heeft van midner animatie, dan voer de animatie niet uit */
+
+			    summary {
+					align-items: center;
+					display: flex;
+					flex-direction: row;
+					gap: 0.5rem;
+					list-style: none;
+					padding: 0.3rem 0.8rem;
+					cursor: pointer;
+				}
+
+				details[open] {
+					background: none;
+					border-color: transparent;
+
+					summary {
+						border-radius: 0.5rem 0.5rem 0 0;
+						width: fit-content;
+					}
+
+					p {
+						border-radius: 0 0.5rem 0.5rem 0.5rem;
+						margin: 0;
+						padding: 1rem;
+					}
+				}
+
+
+				summary::before {
+   				content: "+";
+    				font-size: 1.5rem;
+    				transition: 0.2s;
+  				}
+
+				details[open] summary::before {
+      			transform: rotate(45deg);
+    			}
+
+				details.purple[open] {
+					& summary,
+					& p {
+						background-color: var(--purple);
+						}		
+					}
+
+					details.green[open] {
+					& summary,
+					& p {
+						background-color: var(--green);
+						}
+					}
+
+					details.yellow[open] {
+					& summary,
+					& p {
+						background-color: var(--yellow);
+						}
+					}
+
+
 			/* Schrijf hier gewoon je CSS voor dit component */
 
 			/* Hint: Dit component kun je volledig met HTML en CSS bouwen */
@@ -17,19 +112,29 @@
 	<body>
 		<h1>Veelgestelde vragen</h1>
 
+		<details class="purple">
+			<summary>
+				Wat is frontend development?
+			</summary>
+			<p>Een frontend developer ontwerpt en bouwt websites in HTML, CSS en JavaScript. Deze frontend talen leer je bij ons, je hebt dus geen voorkennis nodig.</p>
+		</details>
 
-		<!-- Content (waar nog wat HTML omheen moet 😄):
-		Wat is frontend development?
-		Een frontend developer ontwerpt en bouwt websites in HTML, CSS en JavaScript. Deze frontend talen leer je bij ons, je hebt dus geen voorkennis nodig.
+		<details class="green">
+			<summary>
+				Moet ik al kunnen coderen?
+			</summary>
+			<p>Nee, je hebt helemaal geen voorkennis nodig om te beginnen aan deze opleiding, we kunnen je alles leren! Als je wel al voorkennis hebt, is dat alleen maar goed, dan kunnen we je helpen je skills te verbeteren en te verdiepen in de stof. </p>
+		</details>	
 
-		Moet ik al kunnen coderen?
-		Nee, je hebt helemaal geen voorkennis nodig om te beginnen aan deze opleiding, we kunnen je alles leren! Als je wel al voorkennis hebt, is dat alleen maar goed, dan kunnen we je helpen je skills te verbeteren en te verdiepen in de stof.
-
-		Wat is een Associate Degree?
-		Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5. Een Ad slaat een brug tussen het mbo-4 (niveau 4) en een hbo-bachelor (niveau 6). Met een Associate degree kies je voor een praktijkgerichte hbo-opleiding; je wordt opgeleid voor een beroep dat aansluit bij de praktijk. In dit geval word je opgeleid tot ‘frontend designer/developer' of kortweg ‘frontender’. Frontenders ontwerpen en maken interactieve, toegankelijke toepassingen voor het web. Frontenders werken binnen het gebied van software development, interactieontwerp en digitaal visueel ontwerp.
-		Na afronding van deze tweejarige hbo-opleiding, krijg je een wettelijk erkend hbo-diploma met de graad Associate degree. Met dit Ad-diploma kun je direct aan de slag in het werkveld of doorstromen naar de bacheloropleiding Communication and Multimedia Design (CMD).
-		-->
-
+		<details class="yellow">
+			<summary>
+				Wat is een Associate Degree?
+			</summary>
+			<p> 
+				Een Associate degree-opleiding is een tweejarige hbo-opleiding op niveau 5. Een Ad slaat een brug tussen het mbo-4 (niveau 4) en een hbo-bachelor (niveau 6). Met een Associate degree kies je voor een praktijkgerichte hbo-opleiding; je wordt opgeleid voor een beroep dat aansluit bij de praktijk. In dit geval word je opgeleid tot 'frontend designer/developer' of kortweg 'frontender'. Frontenders ontwerpen en maken interactieve, toegankelijke
+				toepassingen voor het web. Frontenders werken binnen het gebied van software development, interactieontwerp en digitaal visueel ontwerp. Na afronding van deze tweejarige hbo-opleiding, krijg je een wettelijk erkend hbo-diploma met de graad Associate degree. Met dit Ad-diploma kun je direct aan de slag in het werkveld of doorstromen naar de bacheloropleiding Communication and Multimedia Design (CMD).
+			</p>
+		</details>
 
 		<!-- Hint: Dit stukje HTML geeft het misschien al weg :) -->
 		<details open>
