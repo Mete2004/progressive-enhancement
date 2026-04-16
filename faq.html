@@ -20,20 +20,24 @@
 				border-radius: 0.5rem;
 			
 				/* Als de gebruiker geen voorkeur heeft van minder animatie, dan voer animatie uit*/
-			  @media (prefers-reduced-motion: no-preference) {
+			  	@media (prefers-reduced-motion: no-preference) {
 					interpolate-size: allow-keywords;
 				}
 
-				&::details-content {
+				@supports selector(details-content) {
+
+					&::details-content {
 					opacity: 0;
 					block-size: 0;
 					overflow-y: clip;
 					transition: content-visibility 0.3s allow-discrete, opacity 0.3s, block-size 0.3s;
 				}
 
-				&[open]::details-content {
-					opacity: 1;
-					block-size: auto;
+					&[open]::details-content {
+						opacity: 1;
+						block-size: auto;
+					}
+
 				}
 
 				& p {
@@ -68,7 +72,6 @@
 						padding: 1rem;
 					}
 				}
-
 
 				summary::before {
    				content: "+";
